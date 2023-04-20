@@ -11,13 +11,11 @@ public class QuestController : MonoBehaviour
     public int currentQuestIndex = 0;
 
     public static QuestController Instance;
-
+    public Inventory userInventory;
     private void Start()
     {
         QuestController.Instance = this;
-        /*for (int i = 0;i < GoalList.Count; i++) {
-            GoalList[i].setQuestController(this);
-        }*/
+        
         setGoalsActive();
     }
 
@@ -31,6 +29,7 @@ public class QuestController : MonoBehaviour
 
     public void CompleteGoal()
     {
+        userInventory.AddAmountToItem(0, this.QuestList[currentQuestIndex].RewardCoins);
         currentQuestIndex++;
         SetNextGoalActive();
     }

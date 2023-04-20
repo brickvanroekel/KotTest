@@ -50,8 +50,12 @@ public class LineController : MonoBehaviour
                 ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
                 if (Physics.Raycast(ray, out hit))
                 {
-                    makeLine(hit.collider.transform);
-                    hit.transform.gameObject.SendMessage("OnMouseDown");
+                    if(hit.collider.gameObject.tag == "Star")
+                    {
+                        makeLine(hit.collider.transform);
+                    }
+                    
+                    //hit.transform.gameObject.SendMessage("makeLine", hit.collider.transform);
                 }
             }
         }
